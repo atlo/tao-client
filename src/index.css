@@ -1,14 +1,163 @@
+@font-face {
+  font-family: 'LeagueSpartan-Bold';
+  src: url('./fonts/LeagueSpartan-Bold.eot');
+  src: url('./fonts/LeagueSpartan-Bold.woff2') format('woff2'),
+       url('./fonts/LeagueSpartan-Bold.woff') format('woff'),
+       url('./fonts/LeagueSpartan-Bold.ttf') format('truetype'),
+       url('./fonts/LeagueSpartan-Bold.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+  font-family: 'Verdana';
+  src: url('./fonts/Verdana.eot');
+  src: url('./fonts/Verdana.woff2') format('woff2'),
+       url('./fonts/Verdana.woff') format('woff'),
+       url('./fonts/Verdana.ttf') format('truetype'),
+       url('./fonts/Verdana.eot?#iefix') format('embedded-opentype');
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Verdana';
+  font-size: 16px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+p,
+li {
+  line-height: 26px;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'LeagueSpartan-Bold';
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+header {
+  position: relative;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 40px;
+  background: url('./images/pattern.jpg');
+  background-size: contain;
+  -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.search {
+}
+
+.search form {
+  width: 500px;
+  margin: 50px auto 15px;
+}
+
+.search div {
+  position: relative;
+}
+
+.search input {
+  width: 500px;
+  height: 47px;
+  border: 2px solid #a5a5a5;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.search form button {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 45px;
+  height: 45px;
+  background: #4d4d4d url('./images/search_icon.svg') center center no-repeat;
+  border: 0;
+  border-radius: 5px;
+}
+
+.results > li {
+  width: 100%;
+  margin-top: 25px;
+  background: #e8e8ea;
+  padding: 10px;
+}
+
+.results em {
+  background: yellow;
+  font-style: normal;
+}
+
+.highlights {
+  margin-top: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  max-width: 380px;
+  width: 100%;
+  margin: 60px auto;
+}
+
+.pagination button {
+  border: 0;
+}
+
+.pagination-arrow {
+  width: 35px;
+  height: 35px;
+}
+
+.pagination-arrow-first {
+  background: url('./images/navigation_first_icon.svg') center center no-repeat;
+  background-size: 22px 22px;
+}
+
+.pagination-arrow-previous {
+  background: url('./images/navigation_previous_icon.svg') center center no-repeat;
+  background-size: 22px 22px;
+}
+
+.pagination-arrow-next {
+  background: url('./images/navigation_next_icon.svg') center center no-repeat;
+  background-size: 22px 22px;
+}
+
+.pagination-arrow-last {
+  background: url('./images/navigation_last_icon.svg') center center no-repeat;
+  background-size: 22px 22px;
 }

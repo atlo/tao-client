@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import ResultList from './ResultList'
 import Total from './Total'
 import Pagination from './Pagination'
 
 class Search extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -24,8 +24,8 @@ class Search extends Component {
     this.lastPage = this.lastPage.bind(this)
   }
 
-  handleChange(event) {
-    this.setState({searchValue: event.target.value})
+  handleChange (event) {
+    this.setState({ searchValue: event.target.value })
   }
 
   handleSubmit (event) {
@@ -35,10 +35,9 @@ class Search extends Component {
   }
 
   search () {
-    console.log(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`)
     return Promise
       .resolve()
-      .then(() => this.setState({isLoading: true}))
+      .then(() => this.setState({ isLoading: true }))
       .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`))
       .then(response => response.json())
       .then(data => {
@@ -57,59 +56,59 @@ class Search extends Component {
   }
 
   firstPage () {
-    console.log('firstPage')
-    this.setState({from: 0}, function () {
+    this.setState({ from: 0 }, function () {
       this.search()
     })
   }
 
   lastPage () {
-    console.log('lastPage')
-    const {total} = this.state
-    this.setState({from: total - 10}, function () {
+    const { total } = this.state
+    this.setState({ from: total - 10 }, function () {
       this.search()
     })
   }
 
   nextPage () {
-    console.log('NEXT')
-    const {total, from} = this.state
+    const { total, from } = this.state
 
     if (total > from + 10) {
-      this.setState({from: from + 10}, function () {
+      this.setState({ from: from + 10 }, function () {
         this.search()
       })
     }
   }
 
   previousPage () {
-    console.log('PREVIOUS')
-    const {from} = this.state
+    const { from } = this.state
 
-    if (0 <= from - 10) {
-      this.setState({from: from - 10}, function () {
+    if (from - 10 >= 0) {
+      this.setState({ from: from - 10 }, function () {
         this.search()
       })
     }
   }
 
-  render() {
-    const { isLoading, files, total, from, error} = this.state
+  render () {
+    const { isLoading, files, total, from, error } = this.state
 
     return (
-      <div className="search">
+      <div className='search'>
+        {isLoading
+          ? <div className='loading'>
+            <div className='background' />
+            <img src='./images/loader.gif' alt='Folyamatban...' />
+          </div> : ''}
         <form onSubmit={this.handleSubmit}>
           <div>
-            <input type="text" name="search" onChange={this.handleChange} />
-            <button type="submit"></button>
+            <input type='text' name='search' onChange={this.handleChange} />
+            <button type='submit' />
           </div>
           <Total total={total} />
         </form>
-        {isLoading ? 'Loading...' : ''}
 
         <ResultList files={files} />
         <Pagination total={total} from={from} firstPage={this.firstPage} previousPage={this.previousPage}
-                                  nextPage={this.nextPage} lastPage={this.lastPage} />
+          nextPage={this.nextPage} lastPage={this.lastPage} />
       </div>
     )
   }

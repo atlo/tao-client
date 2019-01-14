@@ -10,8 +10,8 @@ class App extends Component {
         </header>
         <div className='container'>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quos consequuntur at consequatur vitae natus dolores laboriosam sint fugiat fugit atque, voluptates a ipsum deleniti cumque, id, maxime et illum quas aliquam. Tenetur dolorem sit fuga, ullam saepe perferendis consectetur ex repudiandae qui praesentium quos quasi accusamus commodi porro temporibus!</p>
-          <Search />
         </div>
+        <Search />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ResultList from './ResultList'
 import Total from './Total'
 import Pagination from './Pagination'
+import Loading from './Loading'
 
 class Search extends Component {
   constructor (props) {
@@ -41,6 +42,7 @@ class Search extends Component {
       .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`))
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         this.setState({
           files: data.files,
           total: data.total,
@@ -56,16 +58,23 @@ class Search extends Component {
   }
 
   firstPage () {
-    this.setState({ from: 0 }, function () {
-      this.search()
-    })
+    const { total, from } = this.state
+
+    if (from > 1 && total > 10) {
+      this.setState({ from: 0 }, function () {
+        this.search()
+      })
+    }
   }
 
   lastPage () {
     const { total } = this.state
-    this.setState({ from: total - 10 }, function () {
-      this.search()
-    })
+
+    if (total > 10) {
+      this.setState({ from: total - 10 }, function () {
+        this.search()
+      })
+    }
   }
 
   nextPage () {
@@ -93,22 +102,20 @@ class Search extends Component {
 
     return (
       <div className='search'>
-        {isLoading
-          ? <div className='loading'>
-            <div className='background' />
-            <img src='./images/loader.gif' alt='Folyamatban...' />
-          </div> : ''}
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input type='text' name='search' onChange={this.handleChange} />
-            <button type='submit' />
-          </div>
-          <Total total={total} />
-        </form>
+        <Loading isLoading={isLoading} />
+        <div className="container">
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <input type='text' name='search' onChange={this.handleChange} />
+              <button type='submit' />
+            </div>
+            <Total total={total} />
+          </form>
 
-        <ResultList files={files} />
-        <Pagination total={total} from={from} firstPage={this.firstPage} previousPage={this.previousPage}
-          nextPage={this.nextPage} lastPage={this.lastPage} />
+          <ResultList files={files} />
+          <Pagination total={total} from={from} firstPage={this.firstPage} previousPage={this.previousPage}
+            nextPage={this.nextPage} lastPage={this.lastPage} />
+        </div>
       </div>
     )
   }

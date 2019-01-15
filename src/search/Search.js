@@ -46,7 +46,10 @@ class Search extends Component {
   search () {
     return Promise
       .resolve()
-      .then(() => this.setState({ isLoading: true }))
+      .then(() => this.setState({
+        isLoading: true,
+        from: 0
+      }))
       .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`))
       .then(response => response.json())
       .then(data => {

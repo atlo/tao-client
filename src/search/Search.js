@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Autocomplete from 'react-autocomplete'
 import ResultList from './ResultList'
 import Total from './Total'
 import Pagination from './Pagination'
@@ -14,7 +15,8 @@ class Search extends Component {
       error: null,
       searchValue: '',
       from: 0,
-      isLoading: false
+      isLoading: false,
+      suggestions: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -26,6 +28,12 @@ class Search extends Component {
   }
 
   handleChange (event) {
+    const {value} = event.target
+    
+    if (value.length > 2) {
+      this.suggest()
+    }
+
     this.setState({ searchValue: event.target.value })
   }
 
@@ -42,12 +50,30 @@ class Search extends Component {
       .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`))
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({
           files: data.files,
           total: data.total,
           isLoading: false
         })
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message,
+          isLoading: false
+        })
+      })
+  }
+
+  suggest () {
+    return Promise
+      .resolve()
+      .then(() => fetch(`http://localhost:3000/suggest?query=${this.state.searchValue}`))
+      .then(response => response.json())
+      .then(data => {
+        if (data.suggestions.length > 0)  {
+          const suggestions = data.suggestions.map(s => ({id: s, label: s}))
+          this.setState({suggestions})
+        }
       })
       .catch(error => {
         this.setState({
@@ -96,17 +122,32 @@ class Search extends Component {
       })
     }
   }
-
+  
   render () {
-    const { isLoading, files, total, from, error } = this.state
+    const { isLoading, files, total, from, suggestions, error } = this.state
 
     return (
       <div className='search'>
         <Loading isLoading={isLoading} />
         <div className="container">
           <form onSubmit={this.handleSubmit}>
-            <div>
-              <input type='text' name='search' onChange={this.handleChange} />
+            <div className="search-input">
+              <Autocomplete
+                items={suggestions}
+                shouldItemRender={(item, searchValue) => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) > -1}
+                getItemValue={item => item.label}
+                renderItem={(item, highlighted) =>
+                  <div
+                    key={item.id}
+                    style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                  >
+                    {item.label}
+                  </div>
+                }
+                value={this.state.searchValue}
+                onChange={event => this.handleChange(event)}
+                onSelect={searchValue => this.setState({ searchValue })}
+              />
               <button type='submit' />
             </div>
             <Total total={total} />

@@ -28,11 +28,11 @@ class Search extends Component {
   }
 
   handleChange (event) {
-    const {value} = event.target
+    /* const {value} = event.target
     
     if (value.length > 2) {
       this.suggest()
-    }
+    } */
 
     this.setState({ searchValue: event.target.value })
   }
@@ -135,7 +135,7 @@ class Search extends Component {
         <div className="container">
           <form onSubmit={this.handleSubmit}>
             <div className="search-input">
-              <Autocomplete
+              {/* <Autocomplete
                 items={suggestions}
                 shouldItemRender={(item, searchValue) => item.label.toLowerCase().indexOf(searchValue.toLowerCase()) > -1}
                 getItemValue={item => item.label}
@@ -150,7 +150,8 @@ class Search extends Component {
                 value={this.state.searchValue}
                 onChange={event => this.handleChange(event)}
                 onSelect={searchValue => this.setState({ searchValue })}
-              />
+              /> */}
+              <input type="text" name="search" onChange={this.handleChange} />
               <button type='submit' />
             </div>
             <Total total={total} />

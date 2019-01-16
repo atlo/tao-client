@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Autocomplete from 'react-autocomplete'
+import Pagination from 'react-js-pagination'
 import ResultList from './ResultList'
 import Total from './Total'
-import Pagination from './Pagination'
 import Loading from './Loading'
+
 
 class Search extends Component {
   constructor (props) {
@@ -14,43 +14,38 @@ class Search extends Component {
       files: [],
       error: null,
       searchValue: '',
-      from: 0,
-      isLoading: false,
-      suggestions: []
+      page: 1,
+      isLoading: false
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.nextPage = this.nextPage.bind(this)
-    this.previousPage = this.previousPage.bind(this)
-    this.firstPage = this.firstPage.bind(this)
-    this.lastPage = this.lastPage.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
   }
 
   handleChange (event) {
-    /* const {value} = event.target
-    
-    if (value.length > 2) {
-      this.suggest()
-    } */
-
     this.setState({ searchValue: event.target.value })
+  }
+
+  handlePageChange (page) {
+    this.setState({page: page}, function () {
+      this.search()
+    })
   }
 
   handleSubmit (event) {
     event.preventDefault()
 
-    this.search()
+    this.setState({page: 1}, function () {
+      this.search()
+    })
   }
 
   search () {
     return Promise
       .resolve()
-      .then(() => this.setState({
-        isLoading: true,
-        from: 0
-      }))
-      .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&from=${this.state.from}`))
+      .then(() => this.setState({ isLoading: true }))
+      .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&page=${this.state.page}`))
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -66,68 +61,9 @@ class Search extends Component {
         })
       })
   }
-
-  suggest () {
-    return Promise
-      .resolve()
-      .then(() => fetch(`http://localhost:3000/suggest?query=${this.state.searchValue}`))
-      .then(response => response.json())
-      .then(data => {
-        if (data.suggestions.length > 0)  {
-          const suggestions = data.suggestions.map(s => ({id: s, label: s}))
-          this.setState({suggestions})
-        }
-      })
-      .catch(error => {
-        this.setState({
-          error: error.message,
-          isLoading: false
-        })
-      })
-  }
-
-  firstPage () {
-    const { total, from } = this.state
-
-    if (from > 1 && total > 10) {
-      this.setState({ from: 0 }, function () {
-        this.search()
-      })
-    }
-  }
-
-  lastPage () {
-    const { total } = this.state
-
-    if (total > 10) {
-      this.setState({ from: total - 10 }, function () {
-        this.search()
-      })
-    }
-  }
-
-  nextPage () {
-    const { total, from } = this.state
-
-    if (total > from + 10) {
-      this.setState({ from: from + 10 }, function () {
-        this.search()
-      })
-    }
-  }
-
-  previousPage () {
-    const { from } = this.state
-
-    if (from - 10 >= 0) {
-      this.setState({ from: from - 10 }, function () {
-        this.search()
-      })
-    }
-  }
   
   render () {
-    const { isLoading, files, total, from, suggestions, error } = this.state
+    const { isLoading, files, total, page } = this.state
 
     return (
       <div className='search'>
@@ -158,8 +94,16 @@ class Search extends Component {
           </form>
 
           <ResultList files={files} />
-          <Pagination total={total} from={from} firstPage={this.firstPage} previousPage={this.previousPage}
-            nextPage={this.nextPage} lastPage={this.lastPage} />
+          {total > 10 ? (
+            <Pagination 
+              activePage={page}
+              itemsCountPerPage={10}
+              totalItemsCount={total}
+              pageRangeDisplayed={10}
+              onChange={this.handlePageChange}
+            />
+            ) : ''
+          }
         </div>
       </div>
     )

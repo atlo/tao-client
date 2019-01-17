@@ -1,9 +1,10 @@
+import dotenv from 'dotenv'
 import React, { Component } from 'react'
 import Pagination from 'react-js-pagination'
 import ResultList from './ResultList'
 import Total from './Total'
 import Loading from './Loading'
-
+dotenv.config()
 
 class Search extends Component {
   constructor (props) {
@@ -45,7 +46,7 @@ class Search extends Component {
     return Promise
       .resolve()
       .then(() => this.setState({ isLoading: true }))
-      .then(() => fetch(`http://localhost:3000/search?query=${this.state.searchValue}&page=${this.state.page}`))
+      .then(() => fetch(`${process.env.REACT_APP_SERVER_URL}/search?query=${this.state.searchValue}&page=${this.state.page}`))
       .then(response => response.json())
       .then(data => {
         this.setState({

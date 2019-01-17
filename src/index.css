@@ -126,6 +126,10 @@ header {
   font-style: normal;
 }
 
+.error {
+  color: red;
+}
+
 .highlights {
   margin-top: 10px;
 }

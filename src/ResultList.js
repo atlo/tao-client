@@ -8,6 +8,7 @@ function formatfileName (path) {
 }
 
 export default function ({ files }) {
+  console.log({files})
   const results = files.map((result, index) => (
     <li key={index}>
       <a href='#' target='_blank'>{formatfileName(result.fileName)}</a>

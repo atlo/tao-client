@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dotenv": "^6.2.0",
+    "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-js-pagination": "^3.0.2",

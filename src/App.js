@@ -50,7 +50,10 @@ class App extends Component {
         isLoading: true,
         error: null
       }))
-      .then(() => fetch(`${process.env.REACT_APP_SERVER_URL}/search?query=${this.state.value}&page=${this.state.page}`))
+      .then(() => {
+        const query = this.state.value.toLowerCase() || ''
+        return fetch(`${process.env.REACT_APP_SERVER_URL}/search?query=${query}&page=${this.state.page}`)
+      })
       .then(response => response.json())
       .then(data => {
         this.setState({

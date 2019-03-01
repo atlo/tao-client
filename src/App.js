@@ -4,6 +4,7 @@ import Pagination from 'react-js-pagination'
 import ResultList from './ResultList'
 import Form from './Form'
 import Loading from './Loading'
+import SearchWords from './SearchWords'
 import {propOr} from 'ramda'
 dotenv.config()
 
@@ -17,12 +18,22 @@ class App extends Component {
       error: null,
       value: '',
       page: 1,
-      isLoading: false
+      isLoading: false,
+      searchWords: [
+        'Felcsút',
+        'Puskás Akadémia',
+        'FTC',
+        'Veszprém',
+        'Videoton',
+        'OTP',
+        'Telekom'
+      ]
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
+    this.searchWord = this.searchWord.bind(this)
   }
 
   handleChange (event) {
@@ -39,6 +50,12 @@ class App extends Component {
     event.preventDefault()
 
     this.setState({page: 1}, function () {
+      this.search()
+    })
+  }
+
+  searchWord (event) {
+    this.setState({ value: event.target.innerHTML }, function () {
       this.search()
     })
   }
@@ -71,8 +88,9 @@ class App extends Component {
         })
       })
   }
+
   render () {
-    const { isLoading, files, total, page, error } = this.state
+    const { isLoading, files, total, page, error, searchWords } = this.state
 
     return (
       <div>
@@ -89,6 +107,7 @@ class App extends Component {
                 error={error}
                 total={total}
               />
+              <SearchWords searchWords={searchWords} searchWord={this.searchWord} />
               <ResultList files={files} />
               {total > 10 ? (
                 <Pagination 

@@ -243,6 +243,27 @@ header {
   }
 }
 
+.total {
+  height: 26px;
+}
+
+.words {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.words button {
+  height: 30px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background: #ccc;
+  border-radius: 5px;
+  color: #333;
+  font-size: 16px;
+}
+
 @media(max-width: 800px) {
   .container {
     padding: 0 15px;

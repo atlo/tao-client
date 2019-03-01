@@ -8,6 +8,6 @@ export default function ({ total }) {
       </p>
     )
   } else {
-    return (<p />)
+    return (<p className='total'></p>)
   }
 }

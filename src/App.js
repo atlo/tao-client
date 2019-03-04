@@ -95,7 +95,15 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1>Tao Kereső</h1>
+          <div className='container'>
+            <a href="https://transparency.hu" target="_blank" rel="noopener">
+              <img src="/transparency.svg" alt="Transparency International" />
+            </a>
+            <h1>Tao Kereső</h1>
+            <a href="https://atlatszo.hu" target="_blank" rel="noopener">
+              <img src="/atlatszo.svg" alt="Átlátszó" />
+            </a>
+          </div>
         </header>
         <div className='container'>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quos consequuntur at consequatur vitae natus dolores laboriosam sint fugiat fugit atque, voluptates a ipsum deleniti cumque, id, maxime et illum quas aliquam. Tenetur dolorem sit fuga, ullam saepe perferendis consectetur ex repudiandae qui praesentium quos quasi accusamus commodi porro temporibus!</p>

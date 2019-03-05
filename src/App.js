@@ -99,7 +99,7 @@ class App extends Component {
             <a href="https://transparency.hu" target="_blank" rel="noopener">
               <img src="/transparency.svg" alt="Transparency International" />
             </a>
-            <h1>Tao Kereső</h1>
+            <h1>Tao-kereső</h1>
             <a href="https://atlatszo.hu" target="_blank" rel="noopener">
               <img src="/atlatszo.svg" alt="Átlátszó" />
             </a>

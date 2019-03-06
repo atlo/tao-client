@@ -106,7 +106,7 @@ class App extends Component {
           </div>
         </header>
         <div className='container'>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In quos consequuntur at consequatur vitae natus dolores laboriosam sint fugiat fugit atque, voluptates a ipsum deleniti cumque, id, maxime et illum quas aliquam. Tenetur dolorem sit fuga, ullam saepe perferendis consectetur ex repudiandae qui praesentium quos quasi accusamus commodi porro temporibus!</p>
+          <p>Egy helyen a látványcsapatsportokba (foci, jégkorong, kézilabda, kosárlabda, vízilabda) öntött közpénzek több évnyi dokumentációja. Kereshető adatbázis az EMMI-nek leadott támogatási határozatokból, melyekből kiderül, hogy 2012 és 2017 között mely cégek melyik sportegyesületnek mennyi TAO-pénzt adtak. Keressen cég, település, sportág vagy egyesület alapján!</p>
           <div className='search'>
             <div className="container">
               <Form 

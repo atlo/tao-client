@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -12,20 +11,23 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Tao kereső</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /><!-- OPENGRAPH SHARE -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://atlatszo.taokereso.hu">
+    <meta property="og:title" content="Tao-kereső">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:image" content="https://atlatszo.taokereso/facebook.jpg">
+    <meta property="article:publisher" content="https://www.facebook.com/atlatszo/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Atlatszo">
+    <meta name="twitter:image" content="https://atlatszo.taokereso/twitter.jpg">
+    <meta property="fb:app_id" content="345585816190715">
+    <meta property="og:description" content="Egy helyen a látványcsapatsportokba (foci, jégkorong, kézilabda, kosárlabda, vízilabda) öntött közpénzek több évnyi dokumentációja.">
+    <meta name="description" content="Egy helyen a látványcsapatsportokba (foci, jégkorong, kézilabda, kosárlabda, vízilabda) öntött közpénzek több évnyi dokumentációja.">
+    <title>Tao-kereső</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Az oldal futtatásához engedélyezni kell a Javascript futtatását.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.

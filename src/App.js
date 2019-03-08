@@ -94,17 +94,6 @@ class App extends Component {
 
     return (
       <div>
-        <header>
-          <div className='container'>
-            <a href="https://transparency.hu" target="_blank" rel="noopener noreferrer">
-              <img src="/transparency.svg" alt="Transparency International" />
-            </a>
-            <h1>Tao-kereső</h1>
-            <a href="https://atlatszo.hu" target="_blank" rel="noopener noreferrer">
-              <img src="/atlatszo.svg" alt="Átlátszó" />
-            </a>
-          </div>
-        </header>
         <div className='container'>
           <p>Egy helyen a látványcsapatsportokba (foci, jégkorong, kézilabda, kosárlabda, vízilabda) öntött közpénzek több évnyi dokumentációja. Kereshető adatbázis az EMMI-nek leadott támogatási határozatokból, melyekből kiderül, hogy mely cégek melyik sportegyesületnek mennyi TAO-pénzt adtak 2012 és 2017 között. Keressen cég, település, sportág vagy egyesület alapján!</p>
           <div className='search'>

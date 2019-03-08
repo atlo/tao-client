@@ -96,11 +96,11 @@ class App extends Component {
       <div>
         <header>
           <div className='container'>
-            <a href="https://transparency.hu" target="_blank" rel="noopener">
+            <a href="https://transparency.hu" target="_blank" rel="noopener noreferrer">
               <img src="/transparency.svg" alt="Transparency International" />
             </a>
             <h1>Tao-kereső</h1>
-            <a href="https://atlatszo.hu" target="_blank" rel="noopener">
+            <a href="https://atlatszo.hu" target="_blank" rel="noopener noreferrer">
               <img src="/atlatszo.svg" alt="Átlátszó" />
             </a>
           </div>

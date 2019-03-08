@@ -283,6 +283,26 @@ header a:last-of-type img {
 }
 
 @media(max-width: 767px) {
+  header {
+    height: auto;
+    padding: 25px 0;
+  }
+
+  header .container {
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    width: 100%;
+    order: 1;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  header a {
+    order: 2;
+  }
+
   .pagination li a {
     display: none;
   }
